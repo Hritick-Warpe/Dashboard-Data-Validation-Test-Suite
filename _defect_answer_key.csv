@@ -1,0 +1,11 @@
+defect_id,description,quality_dimension,rows_affected,sample_ids
+DEF-01,Duplicate order_id loaded,Uniqueness,25,"order_id: 522572,522727,546185,516922,500013..."
+DEF-02,Rows missing in target (dropped by ETL),Completeness,40,"order_id: 523260,523941,503167,506535,544885..."
+DEF-03,net_amount ignores discount,Accuracy,60,"order_id: 545393,530740,506982,533771,500303..."
+DEF-04,NULL net_amount,Completeness,30,"order_id: 507109,533610,541164,535252,500707..."
+DEF-05,Cancelled orders present in target (rule R1),Validity,35,"order_id: 533440,525687,529528,538855,530668..."
+DEF-06,customer_id not in dim_customer (orphan),Consistency,20,"order_id: 516741,516893,517419,544428,538565..."
+DEF-07,Future-dated orders,Validity,15,"order_id: 505554,532207,533721,546643,540065..."
+DEF-08,Negative quantity,Validity,12,"order_id: 510340,517876,518062,503123,518292..."
+DEF-09,region_code differs from source,Consistency,45,"order_id: 528023,532608,524942,548282,505309..."
+DEF-10,Stale load_date (timeliness),Timeliness,500,500 random rows

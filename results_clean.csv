@@ -1,0 +1,33 @@
+test_id,req_id,check,test_type,dimension,expected,failures,status
+TC-001,REQ-01,Row count: source (non-cancelled) vs target,Reconciliation,Completeness,Difference in row count = 0,0.0,PASS
+TC-002,REQ-01,Source orders missing in target,Source-to-target,Completeness,0 missing orders,0.0,PASS
+TC-003,REQ-02,Target orders that do not exist in source,Source-to-target,Consistency,0 unknown orders,0.0,PASS
+TC-004,REQ-03,Duplicate order_id in target,Data quality,Uniqueness,0 duplicated order_ids,0.0,PASS
+TC-005,REQ-04,Cancelled orders present in target (rule R1),Business rule,Validity,0 cancelled orders,0.0,PASS
+TC-006,REQ-08,Status values outside the allowed list,Data quality,Validity,0 rows with unknown or NULL status,0.0,PASS
+TC-007,REQ-08,"NULL in key columns (order_id, customer_id, product_id, order_date)",Data quality,Completeness,0 rows with NULL keys,0.0,PASS
+TC-008,REQ-08,NULL in net_amount,Data quality,Completeness,0 NULL net_amount,0.0,PASS
+TC-009,REQ-08,NULL in quantity / unit_price / order_amount,Data quality,Completeness,0 rows with NULL measures,0.0,PASS
+TC-010,REQ-05,net_amount = order_amount x (1 - discount%) (rule R2),Calculation,Accuracy,0 rows where net_amount is wrong (1 cent tolerance),0.0,PASS
+TC-011,REQ-05,order_amount = quantity x unit_price,Calculation,Accuracy,0 rows where amount is wrong,0.0,PASS
+TC-012,REQ-06,order_month = first 7 characters of order_date (rule R3),Transformation,Accuracy,0 mismatches,0.0,PASS
+TC-013,REQ-07,Orphan customer_id (not in dim_customer),Referential integrity,Consistency,0 orphan customers,0.0,PASS
+TC-014,REQ-07,Orphan product_id (not in dim_product),Referential integrity,Consistency,0 orphan products,0.0,PASS
+TC-015,REQ-07,Orphan region_code (not in dim_region),Referential integrity,Consistency,0 orphan regions,0.0,PASS
+TC-016,REQ-08,Quantity is zero or negative (boundary),Boundary,Validity,0 rows with quantity <= 0,0.0,PASS
+TC-017,REQ-08,unit_price is zero or negative (boundary),Boundary,Validity,0 rows with unit_price <= 0,0.0,PASS
+TC-018,REQ-08,"discount_pct outside allowed set (0,5,10,15,20)",Negative,Validity,0 rows with other discount values,0.0,PASS
+TC-019,REQ-08,Future-dated orders (order_date after batch date),Boundary,Validity,0 rows with order_date > 2026-01-05,0.0,PASS
+TC-020,REQ-08,Orders dated before the data start (2025-01-01),Boundary,Validity,0 rows earlier than 2025-01-01,0.0,PASS
+TC-021,REQ-09,region_code matches source (rule R7),Source-to-target,Consistency,0 mismatches,0.0,PASS
+TC-022,REQ-09,customer_id matches source,Source-to-target,Consistency,0 mismatches,0.0,PASS
+TC-023,REQ-09,quantity matches source,Source-to-target,Consistency,0 mismatches,0.0,PASS
+TC-024,REQ-09,unit_price matches source,Source-to-target,Consistency,0 mismatches,0.0,PASS
+TC-025,REQ-09,order_date matches source,Source-to-target,Consistency,0 mismatches,0.0,PASS
+TC-026,REQ-09,order_amount matches source,Source-to-target,Accuracy,0 mismatches,0.0,PASS
+TC-027,REQ-10,load_date equals the latest batch date (timeliness),Timeliness,Timeliness,0 rows with load_date <> 2026-01-05,0.0,PASS
+TC-028,REQ-11,Total order_amount: source vs target,Reconciliation,Accuracy,Variance = 0.00 (tolerance 0.01),0.0,PASS
+TC-029,REQ-11,Total net_amount: expected from source vs target,Reconciliation,Accuracy,Variance within 50.00 (allows per-row cent rounding across ~42k rows),12.08,PASS
+TC-030,REQ-11,Region-wise order_amount reconciliation (regions that differ),Reconciliation,Accuracy,0 regions with a difference,0.0,PASS
+TC-031,REQ-11,Month-wise order_amount reconciliation (months that differ),Reconciliation,Accuracy,0 months with a difference,0.0,PASS
+TC-032,REQ-08,net_amount has more than 2 decimal places,Data quality,Validity,0 rows with extra decimals,0.0,PASS
