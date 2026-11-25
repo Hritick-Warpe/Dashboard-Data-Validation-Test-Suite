@@ -38,6 +38,12 @@ All data is synthetic. Ten defects were seeded on purpose to practise the testin
 ## Resume line (adjust the numbers if you add more)
 Built a data-validation test suite for a sales ETL and Power BI dashboard on a synthetic 50,000-row dataset: wrote 44 test cases (32 executed with SQL and Python, 12 for the dashboard), found and logged 10 seeded defects with retesting, and reported results in a test summary.
 
+![Power BI dashboard](04_dashboard_clean.png)
+![SQL defective](02_sql_defective.png)
+![SQL clean](03_sql_clean_all_pass.png)
+![Python run](01_python_run.png)
+![Python run 2](02_python_run.png)
+
 Author
 Hritick Warpe | 
 Linkedin : https://www.linkedin.com/in/hritickwarpe
